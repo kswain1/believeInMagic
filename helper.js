@@ -24,6 +24,8 @@
 const maxVideoSize = 513;
 const canvasSize = 400;
 const stats = new Stats();
+const poseListX = [];
+const poseListY = [];
 const poseList = [];
 var poseObject = {};
 
@@ -379,10 +381,9 @@ function detectPoseInRealTime(video, net) {
       if (score >= minPoseConfidence) {
         if (guiState.output.showPoints) {
           drawKeypoints(keypoints, minPartConfidence, ctx, scale);
-          poseList.push(keypoints[15]["position"]["y"]);
-          poseList.push(",")
-          console.log(keypoints[15]["position"]["y"]);
-          console.log(keypoints, "Key points");
+          poseList.push("[" + keypoints[16]["position"]["x"] + "," + keypoints[16]["position"]["y"] + "]");
+          poseList.push("\n")
+          console.log(keypoints[16]["position"]["x"] + "," + keypoints[16]["position"]["y"]);
         }
         if (guiState.output.showSkeleton) {
           drawSkeleton(keypoints, minPartConfidence, ctx, scale);
